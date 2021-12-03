@@ -17,8 +17,30 @@ app.post('/',express.json(),(req, res)=>{
     agent.add(' Enviando respuesta desde el server ')
   }
 
+  function customPayloadDemo(agent){
+    var payloadData = {
+      "richContent":[
+        [
+          {
+            "type" : "accordion",
+            "title": "Accordion title",
+            "subtitle": "Accordion subtitle",
+            "image" : {
+              "src": {
+                "rawUrl": "https://example.com/images/logo.png"
+              }
+            },
+            "text": "According text"
+          }
+        ]
+      ]
+    }
+    agent.add( new dfff.Payload(plataform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
+  }
+
   var intentMap = new Map();
-  intentMap.set('demo', demo)
+  intentMap.set('demo', demo);
+  intentMap.set('customPayloadDemo', customPayloadDemo)
 
   agent.handleRequest(intentMap)
 })
