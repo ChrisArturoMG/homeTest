@@ -5,4 +5,4 @@ app.get('/', (req, res) =>{
   res.send('todo bien')
 })
 
-app.listen(3333, ()=> console.log('server por el puerto 3333'))
+app.listen( ()=> console.log('server por el puerto 3333'))
