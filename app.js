@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 
-const dfff = requiere('dialogflow-fulfillment')
+const dfff = require('dialogflow-fulfillment')
 
 app.get('/', (req, res) =>{
   res.send('todo bien')
