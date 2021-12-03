@@ -14,6 +14,7 @@ app.post('/',express.json(),(req, res)=>{
   });
 
   function demo(agent){
+    console.log(agent)
     agent.add('Hola soy Nomo te ayudare revisar tus plantas ')
   }
 
