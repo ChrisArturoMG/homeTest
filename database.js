@@ -23,8 +23,8 @@ const resultado = async()=>{
         console.log(e);
         throw new Error('No se pudo iniciar la base de datos');
     }
+    
 }
-
 module.exports = {
     resultado, mysqlConnection
 };

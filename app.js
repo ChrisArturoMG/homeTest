@@ -17,42 +17,42 @@ app.post('/',express.json(),(req, res)=>{
   
       const idBluetooth = '30:ae:a4:99:49:aa';
       const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
-          console.log('haciendo consulta')
+        console.log('haciendo consulta')
            dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
+           
            console.log(dialogo)
            
            const  demo =  (agent)=>{
-             agent.add( dialogo );
+             return agent.add( dialogo );
            }
-      })
-      
-      
-      function customPayloadDemo(agent){
-        var payloadData = {
-          "richContent":[
-            [
-              {
-                "type" : "accordion",
-                "title": "Accordion title",
-                "subtitle": "Accordion subtitle",
-                "image" : {
-                  "src": {
-                    "rawUrl": "https://example.com/images/logo.png"
+          function customPayloadDemo(agent){
+            var payloadData = {
+              "richContent":[
+                [
+                  {
+                    "type" : "accordion",
+                    "title": "Accordion title",
+                    "subtitle": "Accordion subtitle",
+                    "image" : {
+                      "src": {
+                        "rawUrl": "https://example.com/images/logo.png"
+                      }
+                    },
+                    "text": "According text"
                   }
-                },
-                "text": "According text"
-              }
-            ]
-          ]
-        }
-        agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
-      }
-    
-      var intentMap = new Map();
-      intentMap.set('demo', demo);
-      intentMap.set('customPayloadDemo', customPayloadDemo)
-    
-      agent.handleRequest(intentMap)
+                ]
+              ]
+            }
+            agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
+          }
+        
+          var intentMap = new Map();
+          intentMap.set('demo', demo);
+          intentMap.set('customPayloadDemo', customPayloadDemo)
+        
+          agent.handleRequest(intentMap)
+              
+        })
       
     } catch (error) {
       
