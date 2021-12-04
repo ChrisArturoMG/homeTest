@@ -22,7 +22,7 @@ app.post('/',express.json(),(req, res)=>{
     let temp, hum, luz, ph;
     try {
       const datos = await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{  
-        return datos._results
+        return rows
       });
       console.log('datos ', datos)
       dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
