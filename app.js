@@ -12,12 +12,7 @@ app.post('/',express.json(),(req, res)=>{
   
   try {
     
-    const {originalDetectIntentRequest } = agent.body;
-
-
-    console.log(agent.body)
-    console.log(originalDetectIntentRequest)
-
+    
     console.log("datos del agente") 
     console.log(agent)
 
