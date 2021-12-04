@@ -22,15 +22,15 @@ app.post('/',express.json(),(req, res)=>{
            console.log(dialogo)
       })
   
+      
+      
+    } catch (error) {
+      
+    }
     
     const  demo =  (agent)=>{
       let temp, hum, luz, ph;
-  
-    }
-  } catch (error) {
-    
   }
-
 
 
   function customPayloadDemo(agent){
