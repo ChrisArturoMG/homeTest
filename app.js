@@ -11,6 +11,7 @@ app.get('/', (req, res) =>{
 })
 
 app.post('/',express.json(),(req, res)=>{
+  console.log('esta es')
   res.send({
     "speech": "<speak> The weather in is <say-as interpret-as='number'> degrees Farenheit </say-as> </speak>",  // ASCII characters only
     "displayText": "The weather in  is ",
