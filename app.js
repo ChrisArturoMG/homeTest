@@ -21,7 +21,7 @@ app.post('/',express.json(),(req, res)=>{
   const  demo = async (agent)=>{
     const  { planta } = agent.parameters;
     const idBluetooth = '30:ae:a4:99:49:aa';
-    let lectura = {}; 
+    var lectura = {}; 
     
 
     await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{
