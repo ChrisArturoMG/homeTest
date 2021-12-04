@@ -8,7 +8,10 @@ app.post('/',express.json(),(req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
-    console.log(agent.request_.body.originalDetectIntentRequest.payload)
+
+    const { user } = agent.request_.body.originalDetectIntentRequest.payload
+
+    console.log('informacion del usuario ', user)
 
     const  { planta } = agent.parameters;
   
