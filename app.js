@@ -5,7 +5,12 @@ const dfff = require('dialogflow-fulfillment')
 const { mysqlConnection }= require('./database')
 
 app.post('/',express.json(),(req, res)=>{
-  //mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = 30:ae:a4:99:49:aa'), (err, rows, fields) => {});
+  
+  const agent = new dfff.WebhookClient({
+    request : req,
+    response : res
+  });
+  
   const  { planta } = agent.parameters;
 
     const idBluetooth = '30:ae:a4:99:49:aa';
@@ -15,10 +20,6 @@ app.post('/',express.json(),(req, res)=>{
          console.log(dialogo)
     })
 
-  const agent = new dfff.WebhookClient({
-    request : req,
-    response : res
-  });
   
   const  demo =  (agent)=>{
     let temp, hum, luz, ph;
