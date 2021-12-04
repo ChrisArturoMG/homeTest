@@ -27,6 +27,32 @@ app.post('/',express.json(),(req, res)=>{
         agent.add( dialogo );
       }
       
+      function customPayloadDemo(agent){
+        var payloadData = {
+          "richContent":[
+            [
+              {
+                "type" : "accordion",
+                "title": "Accordion title",
+                "subtitle": "Accordion subtitle",
+                "image" : {
+                  "src": {
+                    "rawUrl": "https://example.com/images/logo.png"
+                  }
+                },
+                "text": "According text"
+              }
+            ]
+          ]
+        }
+        agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
+      }
+    
+      var intentMap = new Map();
+      intentMap.set('demo', demo);
+      intentMap.set('customPayloadDemo', customPayloadDemo)
+    
+      agent.handleRequest(intentMap)
       
     } catch (error) {
       
@@ -34,32 +60,6 @@ app.post('/',express.json(),(req, res)=>{
     
 
 
-  function customPayloadDemo(agent){
-    var payloadData = {
-      "richContent":[
-        [
-          {
-            "type" : "accordion",
-            "title": "Accordion title",
-            "subtitle": "Accordion subtitle",
-            "image" : {
-              "src": {
-                "rawUrl": "https://example.com/images/logo.png"
-              }
-            },
-            "text": "According text"
-          }
-        ]
-      ]
-    }
-    agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
-  }
-
-  var intentMap = new Map();
-  intentMap.set('demo', demo);
-  intentMap.set('customPayloadDemo', customPayloadDemo)
-
-  agent.handleRequest(intentMap)
 })
 
 app.listen(process.env.PORT, ()=> console.log('server por el puerto 3333'))
