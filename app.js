@@ -21,19 +21,21 @@ app.post('/',express.json(),(req, res)=>{
     const  { planta } = agent.parameters;
     const idBluetooth = '30:ae:a4:99:49:aa';
     let temp, hum, luz, ph;
-    let rows;
+    
+    let dialogo;
+
     try {
       const datos = await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
-      console.log('consulta realizada')
+          console.log('haciendo consulta')
+          dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
+          console.log(dialogo)
       });
     } catch (error) {
       console.log(error)
     }
     
-    console.log('revision')
 
-    dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
-    agent.add( dialogo )
+    //agent.add( dialogo )
   }
 
   function customPayloadDemo(agent){
