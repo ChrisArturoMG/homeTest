@@ -12,9 +12,8 @@ app.post('/',express.json(),(req, res)=>{
   
   try {
     
-    
-    console.log("datos del agente") 
-    console.log(agent)
+
+    console.log(agent.res)
 
 
     const  { planta } = agent.parameters;
