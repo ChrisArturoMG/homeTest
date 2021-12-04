@@ -7,15 +7,6 @@ const { mysqlConnection, resultado }= require('./database')
 
 resultado()
 
-
-const revisar = async ()=>{
-  const idBluetooth = '30:ae:a4:99:49:aa';
-  const datos = await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{    
-    console.log('revision de datos')
-    return new Promise( resolve => { rows[0]} )
-    });  
-}
-
 app.get('/', (req, res) =>{
   res.send('todo bien')
 })
@@ -28,19 +19,22 @@ app.post('/',express.json(),(req, res)=>{
 
   const  demo = async (agent)=>{
     const  { planta } = agent.parameters;
+    const idBluetooth = '30:ae:a4:99:49:aa';
     let temp, hum, luz, ph;
     let rows;
     try {
-    
-    console.log(await revisar())
+      await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
+        console.log('consulta realizada')
+        return rows[0].temperatura
+      }).then((tem) =>{
+        console.log('revision de datos')
 
+        dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${tem}`;
+        agent.add( dialogo )
+      });
     } catch (error) {
       console.log(error)
     }
-    
-    console.log('se revisaron tus plantas')
-    dialogo = `Voy a revisar, listo, tu planta `;//${planta} tiene de temperatura ${rows[0].temperatura}`;
-    agent.add( dialogo )
   }
 
   function customPayloadDemo(agent){
