@@ -18,11 +18,13 @@ app.post('/',express.json(),(req, res)=>{
 
 
   
-  const  demo = (agent)=>{
+  const  demo = async (agent)=>{
     const  { planta } = agent.parameters;
-    const idBluetooth = '30:ae:a4:99:49:aa'
+    const idBluetooth = '30:ae:a4:99:49:aa';
+    let lectura = {}; 
+    
 
-    mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{
+    await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{
       
       if(rows.length !== 0){
         console.log(rows[0])
@@ -32,14 +34,12 @@ app.post('/',express.json(),(req, res)=>{
           "humedad" : rows[0].humedad, 
           "ph" : rows[0].ph
         }
-    
-        const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
-        console.log(' INFORMACION ')
-        agent.add( dialogo )
       }else{
         return console.log(' no se encontro')
       }
-      
+      const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
+        console.log(' INFORMACION ')
+        agent.add( dialogo )
 
     });
 
