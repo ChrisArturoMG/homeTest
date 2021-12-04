@@ -12,6 +12,10 @@ app.post('/',express.json(),(req, res)=>{
   
   try {
   
+    console.log("datos del agente") 
+    console.log(agent)
+
+
     const  { planta } = agent.parameters;
   
       const idBluetooth = '30:ae:a4:99:49:aa';
