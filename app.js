@@ -32,7 +32,7 @@ app.post('/',express.json(),(req, res)=>{
     let rows;
     try {
     
-      await revisar()
+    console.log(await revisar())
 
     } catch (error) {
       console.log(error)
