@@ -14,7 +14,7 @@ app.post('/',express.json(),(req, res)=>{
   });
 
   const  demo = (agent)=>{
-    const  { planta } = agent.parameter;
+    const  { planta } = agent.parameters;
     const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura 10, humeda 5 y luz 8`;
     console.log(' INFORMACION ')
     agent.add( dialogo )
