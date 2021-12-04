@@ -9,19 +9,16 @@ app.get('/', (req, res) =>{
 })
 
 app.post('/',express.json(),(req, res)=>{
+  mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = 30:ae:a4:99:49:aa'), (err, rows, fields) => {});
+  const  { planta } = agent.parameters;
+
   const agent = new dfff.WebhookClient({
     request : req,
     response : res
   });
 
-
-  
-  //mysqlConnection.query('SELECT * FROM `activate` WHERE (email = ?)', [email], (err, rows, fields) =>{
-  //});
   const  demo = (agent)=>{
-    const  { planta } = agent.parameters;
     const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura 10, humeda 5 y luz 8`;
-    console.log(' INFORMACION ')
     agent.add( dialogo )
   }
 
