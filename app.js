@@ -2,10 +2,7 @@ const express = require('express')
 const app = express();
 const dfff = require('dialogflow-fulfillment')
 
-
-const { mysqlConnection, resultado }= require('./database')
-
-resultado()
+const { mysqlConnection }= require('./database')
 
 app.get('/', (req, res) =>{
   res.send('todo bien')
@@ -17,30 +14,15 @@ app.post('/',express.json(),(req, res)=>{
     response : res
   });
 
-  const  demo =  (agent)=>{
+
+  
+  //mysqlConnection.query('SELECT * FROM `activate` WHERE (email = ?)', [email], (err, rows, fields) =>{
+  //});
+  const  demo = (agent)=>{
     const  { planta } = agent.parameters;
-    const idBluetooth = '30:ae:a4:99:49:aa';
-    let temp, hum, luz, ph;
-    
-    let dialogo;
-
-    try {
-      const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
-          try {
-          console.log('haciendo consulta')
-           dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
-           console.log(dialogo)
-            
-          } catch (error) {
-            console.log(error)  
-          }
-      });
-    } catch (error) {
-      console.log(error)
-    }
-    
-
-    //agent.add( dialogo )
+    const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura 10, humeda 5 y luz 8`;
+    console.log(' INFORMACION ')
+    agent.add( dialogo )
   }
 
   function customPayloadDemo(agent){
@@ -71,4 +53,4 @@ app.post('/',express.json(),(req, res)=>{
   agent.handleRequest(intentMap)
 })
 
-app.listen(process.env.PORT || 8080, ()=> console.log('server por el puerto ' + process.env.PORT))
+app.listen(process.env.PORT, ()=> console.log('server por el puerto 3333'))
