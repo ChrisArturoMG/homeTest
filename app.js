@@ -18,7 +18,7 @@ app.post('/',express.json(),(req, res)=>{
       const idBluetooth = '30:ae:a4:99:49:aa';
       const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
         console.log('haciendo consulta')
-           dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
+           dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}, vamos a que me mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
            
            console.log(dialogo)
            
@@ -55,7 +55,7 @@ app.post('/',express.json(),(req, res)=>{
         })
       
     } catch (error) {
-      
+      console.log(error)
     }
     
 })
