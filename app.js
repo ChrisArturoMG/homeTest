@@ -38,6 +38,8 @@ app.post('/',express.json(),(req, res)=>{
         }else{
           return console.log(' no se encontro')
         }
+
+        console.log(datos)
         dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
         agent.add( dialogo )
       });
