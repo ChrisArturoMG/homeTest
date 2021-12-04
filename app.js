@@ -21,16 +21,17 @@ app.post('/',express.json(),(req, res)=>{
            dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
            console.log(dialogo)
       })
-  
+      
+      const  demo =  (agent)=>{
+        let temp, hum, luz, ph
+        agent.add( dialogo );
+      }
       
       
     } catch (error) {
       
     }
     
-    const  demo =  (agent)=>{
-      let temp, hum, luz, ph;
-  }
 
 
   function customPayloadDemo(agent){
