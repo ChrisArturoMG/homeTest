@@ -20,8 +20,9 @@ app.post('/',express.json(),(req, res)=>{
   
   const  demo = (agent)=>{
     const  { planta } = agent.parameters;
+    const idBluetooth = '30:ae:a4:99:49:aa'
 
-    mysqlConnection.query('SELECT * FROM `lecturaNodo` WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = `30:ae:a4:99:49:aa` );',  (err, rows, fields) =>{
+    mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{
     
 
       console.log(err)
