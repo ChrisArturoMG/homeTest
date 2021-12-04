@@ -9,7 +9,7 @@ app.get('/', (req, res) =>{
 })
 
 app.post('/',express.json(),(req, res)=>{
-  mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = 30:ae:a4:99:49:aa'), (err, rows, fields) => {});
+  //mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = 30:ae:a4:99:49:aa'), (err, rows, fields) => {});
   const  { planta } = agent.parameters;
 
   const agent = new dfff.WebhookClient({
