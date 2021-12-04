@@ -5,13 +5,13 @@ const dfff = require('dialogflow-fulfillment')
 const { mysqlConnection }= require('./database')
 
 app.post('/',express.json(),(req, res)=>{
+  const agent = new dfff.WebhookClient({
+    request : req,
+    response : res
+  });
   
   try {
     
-    const agent = new dfff.WebhookClient({
-      request : req,
-      response : res
-    });
     
     const  { planta } = agent.parameters;
   
