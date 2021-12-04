@@ -24,7 +24,7 @@ app.post('/',express.json(),(req, res)=>{
       const datos = await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{  
         console.log(datos._results)
 });
-      console.log(datos)
+      console.log('datos ', datos)
       dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
       agent.add( dialogo )
     } catch (error) {
