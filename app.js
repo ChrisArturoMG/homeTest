@@ -8,7 +8,7 @@ app.post('/',express.json(),(req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
-    console.log(agent.request_)
+    console.log(agent.request_.body)
 
     const  { planta } = agent.parameters;
   
