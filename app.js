@@ -28,7 +28,7 @@ app.post('/',express.json(),(req, res)=>{
       
       if(rows.length !== 0){
         console.log(rows[0])
-        const lectura = { 
+        lectura = { 
           "temperatura" : rows[0].temperatura,
           "luz" :  rows[0].luz,
           "humedad" : rows[0].humedad, 
@@ -37,7 +37,6 @@ app.post('/',express.json(),(req, res)=>{
       }else{
         return console.log(' no se encontro')
       }
-      
     });
     const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
       console.log(' INFORMACION ')
