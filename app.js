@@ -23,14 +23,8 @@ app.post('/',express.json(),(req, res)=>{
     const idBluetooth = '30:ae:a4:99:49:aa'
 
     mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{
-    
-
-      console.log(err)
-
+      
       if(rows.length !== 0){
-        return console.log(' no se encontro')
-    }
-  
         console.log(rows[0])
         const lectura = { 
           "temperatura" : rows[0].temperatura,
@@ -42,6 +36,11 @@ app.post('/',express.json(),(req, res)=>{
         const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
         console.log(' INFORMACION ')
         agent.add( dialogo )
+      }else{
+        return console.log(' no se encontro')
+      }
+      
+
     });
 
   }
