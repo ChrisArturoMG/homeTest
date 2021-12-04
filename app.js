@@ -20,12 +20,12 @@ app.post('/',express.json(),(req, res)=>{
           console.log('haciendo consulta')
            dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
            console.log(dialogo)
+           
+           const  demo =  (agent)=>{
+             agent.add( dialogo );
+           }
       })
       
-      const  demo =  (agent)=>{
-        let temp, hum, luz, ph
-        agent.add( dialogo );
-      }
       
       function customPayloadDemo(agent){
         var payloadData = {
@@ -58,8 +58,6 @@ app.post('/',express.json(),(req, res)=>{
       
     }
     
-
-
 })
 
 app.listen(process.env.PORT, ()=> console.log('server por el puerto 3333'))
