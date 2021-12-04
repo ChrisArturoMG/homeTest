@@ -13,6 +13,8 @@ app.post('/',express.json(),(req, res)=>{
 
     console.log('informacion del usuario ', user)
 
+    console.log(agent.request_.body.originalDetectIntentRequest)
+
     const  { planta } = agent.parameters;
   
       const idBluetooth = '30:ae:a4:99:49:aa';
