@@ -17,7 +17,7 @@ app.post('/',express.json(),(req, res)=>{
     response : res
   });
 
-  const  demo = async (agent)=>{
+  const  demo =  (agent)=>{
     const  { planta } = agent.parameters;
     const idBluetooth = '30:ae:a4:99:49:aa';
     let temp, hum, luz, ph;
@@ -25,7 +25,7 @@ app.post('/',express.json(),(req, res)=>{
     let dialogo;
 
     try {
-      const datos = await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
+      const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
           console.log('haciendo consulta')
           dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
           console.log(dialogo)
