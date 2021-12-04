@@ -13,7 +13,7 @@ app.post('/',express.json(),(req, res)=>{
 
     console.log('informacion del usuario ', user)
 
-    console.log(agent.request_)
+    console.log(agent)
 
     const  { planta } = agent.parameters;
   
