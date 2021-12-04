@@ -33,12 +33,13 @@ app.post('/',express.json(),(req, res)=>{
           hum = rows[0].humedad;
           ph = rows[0].ph;
           
+          dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
+          agent.add( dialogo )
+          
         }else{
           return console.log(' no se encontro')
         }
       });
-      dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
-      agent.add( dialogo )
     } catch (error) {
       console.log(error)
     }
