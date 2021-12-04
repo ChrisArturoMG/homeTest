@@ -38,7 +38,7 @@ app.post('/',express.json(),(req, res)=>{
       console.log(error)
     }
     
-
+    console.log('se revisaron tus plantas')
     dialogo = `Voy a revisar, listo, tu planta `;//${planta} tiene de temperatura ${rows[0].temperatura}`;
     agent.add( dialogo )
   }
