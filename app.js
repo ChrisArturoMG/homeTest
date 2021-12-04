@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const dfff = require('dialogflow-fulfillment')
 
+
 const { mysqlConnection, resultado }= require('./database')
 
 resultado()
@@ -23,13 +24,16 @@ app.post('/',express.json(),(req, res)=>{
     let rows;
     try {
       const datos = await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
-        dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
-        agent.add( dialogo )
+      console.log('consulta realizada')
       });
     } catch (error) {
       console.log(error)
     }
+    
+    console.log('revision de datos')
 
+    dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
+    agent.add( dialogo )
   }
 
   function customPayloadDemo(agent){
@@ -60,4 +64,4 @@ app.post('/',express.json(),(req, res)=>{
   agent.handleRequest(intentMap)
 })
 
-app.listen(process.env.PORT, ()=> console.log('server por el puerto 3333'))
+app.listen(process.env.PORT || 8080, ()=> console.log('server por el puerto ' + process.env.PORT))
