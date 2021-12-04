@@ -25,17 +25,25 @@ app.post('/',express.json(),(req, res)=>{
     let temp, hum, luz, ph;
     try {
       const datos = await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], (err, rows, fields) =>{
+        
+        if(rows.length !== 0){
+
+
+        }else{
+          return console.log(' no se encontro')
+        }
+
+        console.log(datos._results)
+        dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
+        agent.add( dialogo )
       });
-      console.log(datos._results)
-      dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
-      agent.add( dialogo )
     } catch (error) {
       console.log(error)
     }
     
-    
+
   }
-  
+
   function customPayloadDemo(agent){
     var payloadData = {
       "richContent":[
