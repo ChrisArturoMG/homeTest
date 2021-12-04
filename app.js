@@ -21,24 +21,26 @@ app.post('/',express.json(),(req, res)=>{
   const  demo = (agent)=>{
     const  { planta } = agent.parameters;
 
-    mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', ['30:ae:a4:99:49:aa'], (err, rows, fields) =>{
+    mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = 30:ae:a4:99:49:aa );',  (err, rows, fields) =>{
     
+
+      console.log(err)
+
       if(rows.length !== 0){
         return console.log(' no se encontro')
     }
-
-    console.log(rows[0])
-    const lectura = { 
-      "temperatura" : rows[0].temperatura,
-      "luz" :  rows[0].luz,
-      "humedad" : rows[0].humedad, 
-      "ph" : rows[0].ph
-    }
-
-    const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
-    console.log(' INFORMACION ')
-    agent.add( dialogo )
-
+  
+        console.log(rows[0])
+        const lectura = { 
+          "temperatura" : rows[0].temperatura,
+          "luz" :  rows[0].luz,
+          "humedad" : rows[0].humedad, 
+          "ph" : rows[0].ph
+        }
+    
+        const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
+        console.log(' INFORMACION ')
+        agent.add( dialogo )
     });
 
   }
