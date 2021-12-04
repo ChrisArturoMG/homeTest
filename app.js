@@ -26,9 +26,14 @@ app.post('/',express.json(),(req, res)=>{
 
     try {
       const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
+          try {
           console.log('haciendo consulta')
-          dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
-          console.log(dialogo)
+           dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
+           console.log(dialogo)
+            
+          } catch (error) {
+            console.log(error)  
+          }
       });
     } catch (error) {
       console.log(error)
