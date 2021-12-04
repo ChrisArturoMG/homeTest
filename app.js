@@ -40,7 +40,7 @@ app.post('/',express.json(),(req, res)=>{
       }
     });
 
-      agent.add( dialogo )
+    await agent.add( dialogo )
   }
 
   function customPayloadDemo(agent){
