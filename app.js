@@ -39,6 +39,8 @@ app.post('/',express.json(),(req, res)=>{
       }
       lecturas = lectura;
     });
+
+    console.log(lecturas)
     const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lecturas.temperatura}, de humedad ${lecturas.humedad} y de luz ${lecturas.luz}`;
       console.log(' INFORMACION ')
       agent.add( dialogo )
