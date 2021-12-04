@@ -13,7 +13,7 @@ app.post('/',express.json(),(req, res)=>{
   try {
     
 
-    console.log(agent.res)
+    console.log(agent.body)
 
 
     const  { planta } = agent.parameters;
