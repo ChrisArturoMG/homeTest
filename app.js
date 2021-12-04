@@ -2,7 +2,9 @@ const express = require('express')
 const app = express();
 const dfff = require('dialogflow-fulfillment')
 
-const { mysqlConnection }= require('./database')
+const { mysqlConnection, resultado }= require('./database')
+
+resultado()
 
 app.get('/', (req, res) =>{
   res.send('todo bien')
@@ -18,7 +20,7 @@ app.post('/',express.json(),(req, res)=>{
   
   const  demo = (agent)=>{
     const  { planta } = agent.parameters;
-    
+
     mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', ['30:ae:a4:99:49:aa'], (err, rows, fields) =>{
     
       if(rows.length !== 0){
