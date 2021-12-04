@@ -23,10 +23,11 @@ app.post('/',express.json(),(req, res)=>{
     let temp, hum, luz, ph;
     let rows;
     try {
-      await mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
+
+      (() => mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
         console.log('consulta realizada')
         return rows[0].temperatura
-      }).then((tem) =>{
+      }) ).then((tem) =>{
         console.log('revision de datos')
 
         dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${tem}`;
