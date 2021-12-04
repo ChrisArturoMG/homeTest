@@ -6,25 +6,31 @@ const { mysqlConnection }= require('./database')
 
 app.post('/',express.json(),(req, res)=>{
   
-  const agent = new dfff.WebhookClient({
-    request : req,
-    response : res
-  });
+  try {
+    
+    const agent = new dfff.WebhookClient({
+      request : req,
+      response : res
+    });
+    
+    const  { planta } = agent.parameters;
   
-  const  { planta } = agent.parameters;
-
-    const idBluetooth = '30:ae:a4:99:49:aa';
-    const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
-        console.log('haciendo consulta')
-         dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
-         console.log(dialogo)
-    })
-
+      const idBluetooth = '30:ae:a4:99:49:aa';
+      const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
+          console.log('haciendo consulta')
+           dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${rows[0].temperatura}`;
+           console.log(dialogo)
+      })
   
-  const  demo =  (agent)=>{
-    let temp, hum, luz, ph;
-
+    
+    const  demo =  (agent)=>{
+      let temp, hum, luz, ph;
+  
+    }
+  } catch (error) {
+    
   }
+
 
 
   function customPayloadDemo(agent){
