@@ -37,12 +37,11 @@ app.post('/',express.json(),(req, res)=>{
       }else{
         return console.log(' no se encontro')
       }
-      const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
-        console.log(' INFORMACION ')
-        agent.add( dialogo )
-
+      
     });
-
+    const dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${lectura.temperatura}, de humedad ${lectura.humedad} y de luz ${lectura.luz}`;
+      console.log(' INFORMACION ')
+      agent.add( dialogo )
   }
 
   function customPayloadDemo(agent){
