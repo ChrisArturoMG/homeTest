@@ -16,9 +16,6 @@ app.post('/',express.json(),(req, res)=>{
     response : res
   });
 
-
-  
-  
   const  demo = async (agent)=>{
     const  { planta } = agent.parameters;
     const idBluetooth = '30:ae:a4:99:49:aa';
@@ -33,14 +30,14 @@ app.post('/',express.json(),(req, res)=>{
           return console.log(' no se encontro')
         }
 
-        console.log(datos._results)
-        dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
-        agent.add( dialogo )
       });
     } catch (error) {
       console.log(error)
     }
-    
+    console.log(datos)
+    console.log(datos._results)
+    dialogo = `Voy a revisar, listo, tu planta ${planta} tiene de temperatura ${temp}, de humedad ${hum} y de luz ${luz}`;
+    agent.add( dialogo )
 
   }
 
