@@ -24,7 +24,6 @@ app.post('/',express.json(),(req, res)=>{
   try {
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
     const { accessToken } = user;
-    const usuario = jwt.verify(accessToken, 'secret')
     console.log(usuario)
 
     verify(accessToken)
