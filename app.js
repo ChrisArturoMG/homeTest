@@ -13,7 +13,7 @@ async function verify(token) {
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
   const payload = ticket.getPayload();
-  //console.log(payload)
+  console.log(payload)
   return payload
 }
 app.post('/',express.json(),(req, res)=>{
@@ -33,7 +33,7 @@ app.post('/',express.json(),(req, res)=>{
         mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
           console.log('haciendo consulta')
           console.log(rows)
-          dialogo = `${payload.name}
+          dialogo = `
           Ire a reviar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
           
           console.log(dialogo)
