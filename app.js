@@ -6,7 +6,7 @@ const { mysqlConnection }= require('./database')
 
 app.get('/verficar', (req, res) =>{
 
-  console.log("/////////////////VERFICAR FUNCIONA/////////////////////////")
+  console.log("////////////////VERFICAR FUNCIONA/////////////////////////")
 })
 
 app.post('/',express.json(),(req, res)=>{
