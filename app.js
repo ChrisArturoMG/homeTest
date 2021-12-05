@@ -72,11 +72,10 @@ app.post('/',express.json(), async (req, res)=>{
                   intentMap.set('customPayloadDemo', customPayloadDemo)
                   agent.handleRequest(intentMap)
                 })
-            } 
-              
             } catch (error) {
+              } 
               
-            }
+        }
           
     });
   } catch (error) {
