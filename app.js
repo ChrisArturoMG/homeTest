@@ -27,7 +27,7 @@ app.post('/',express.json(),(req, res)=>{
   try {
     const agent = new dfff.WebhookClient({ request : req, response : res });
     //const { user } = agent.request_.body.originalDetectIntentRequest.payload
-    const { accessToken } = user;
+    //const { accessToken } = user;
     const  { planta } = agent.parameters;
     //const payload = verify(accessToken)
     //mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ usuario.name ], rows = (err, rows, fields) =>{
