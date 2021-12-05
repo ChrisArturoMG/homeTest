@@ -26,12 +26,12 @@ app.post('/',express.json(), async (req, res)=>{
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ], rows = (err, usuario, fields) =>{
       if(err) {return console.log(err)};
 
-      console.log("datos de usuario " , usuario)
+      console.log("datos de usuario " , usuario.idUsuario)
       console.log("payload    ", payload)
 
       if(rows.length !== 0){
           const idBluetooth = '30:ae:a4:99:49:aa';
-          mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario.idUsuario ], rows = (err, nodos, fields) =>{  
+          mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario.idUsuario ],  (err, nodos, fields) =>{  
           console.log(' tus nodos  ',  nodos)
           
           mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
