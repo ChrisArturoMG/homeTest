@@ -27,11 +27,15 @@ app.post('/',express.json(),(req, res)=>{
   try {
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
     const { accessToken } = user;
-
-    const payload = verify(accessToken)
-
     const  { planta } = agent.parameters;
-  
+    console.log(verify(accessToken))
+//    mysqlConnection.query('SELECT * FROM  usuario WHERE tokenGoogleHome =? );', [ accessToken ], rows = (err, rows, fields) =>{
+//      if(rows.length === 0){
+//        mysqlConnection.query('INSERT INTO usuario tokenGoogleHome =? );', [ accessToken ], rows = (err, rows, fields) =>{});
+//      }     
+//      });
+
+
       const idBluetooth = '30:ae:a4:99:49:aa';
       const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
         console.log('haciendo consulta')
