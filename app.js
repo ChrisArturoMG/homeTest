@@ -22,9 +22,9 @@ async function verify(token) {
 
 
 app.post('/',express.json(), async (req, res)=>{
-  const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
+    const agent = new dfff.WebhookClient({ request : req, response : res });
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
     const { accessToken } = user;
     const  { planta } = agent.parameters;
