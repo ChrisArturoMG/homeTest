@@ -26,18 +26,18 @@ app.post('/',express.json(), async (req, res)=>{
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ],  (err, usuario, fields) =>{
       if(err) {return console.log(err)};
 
-      console.log("datos de usuario " , usuario.RowDataPacket.idUsuario)
+      console.log("datos de usuario " , usuario[0])
       console.log("payload    ", payload)
 
       if(rows.length !== 0){
           const idBluetooth = '30:ae:a4:99:49:aa';
-          mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario.idUsuario ],  (err, nodos, fields) =>{  
+          mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
           console.log(' tus nodos  ',  nodos)
           
           mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
             console.log('haciendo consulta')
             console.log(rows)
-            dialogo = `Hola ${usuario.username} 
+            dialogo = `Hola ${usuario[0].username} 
             Ire a revisar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
             
             console.log(dialogo)
