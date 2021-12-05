@@ -1,4 +1,61 @@
-const express = require('express')
+'use strict';
+
+const bodyParser = require('body-parser');
+const {
+    SignIn,
+    Suggestion,
+    dialogflow
+} = require('actions-on-google');
+const express = require('express');
+const df = dialogflow({
+    clientId: '########################################.apps.googleusercontent.com',
+
+})
+const app = express();
+// you can change the app port here
+app.set('port', (4444))
+
+app.use(bodyParser.json());
+
+// Register handlers for Dialogflow intents
+
+// if 'Default Welcome Intent' has enabled webhook response
+df.intent('Default Welcome Intent', (conv) => {
+    conv.ask("Welcome to Sign in intent project");
+});
+
+// this function will initiate signup process
+df.intent("sign-up", (conv, params, signin) => {
+    conv.ask(new SignIn('This is signup Test'));
+    console.log('after agent adding');
+});
+
+// this will be called after the signup event get completed verify here
+df.intent("after-sign-up", conv => {
+    const payload = conv.user.raw.accessToken;
+    console.log(JSON.stringify(conv.user.raw, null, 2));
+    console.log('Accesstoken is => ' + conv.user.raw.accessToken);
+    if (conv.user.raw.accessToken) {
+        conv.ask('You are successfully signed in.');
+    } else {
+        conv.ask("Not signed in yet.");
+        conv.ask(new Suggestion("want to sign in"));
+    }
+});
+
+// if 'Default Fallback Intent' has enabled webhook response
+df.intent('Default Fallback Intent', conv => {
+    conv.ask(`I didn't understand. Can you tell me something else?`)
+});
+app.post('/', df);
+
+// Start up the server
+app.listen(app.get('port'), function () {
+    console.log('running on port', app.get('port'));
+    console.log('Type \'ngrok http ' + app.get('port') + '\' in new terminal');
+});
+
+/*const express = require('express')
 const app = express();
 const dfff = require('dialogflow-fulfillment')
 
@@ -70,3 +127,4 @@ app.post('/',express.json(),(req, res)=>{
 app.listen(process.env.PORT, ()=> console.log('server por el puerto 3333'))
 
 
+*/
