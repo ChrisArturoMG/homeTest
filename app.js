@@ -24,7 +24,6 @@ app.post('/',express.json(),(req, res)=>{
   try {
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
     const { accessToken } = user;
-    console.log(usuario)
 
     verify(accessToken)
 
