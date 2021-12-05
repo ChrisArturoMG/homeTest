@@ -26,9 +26,7 @@ app.post('/',express.json(), async (req, res)=>{
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ],  (err, usuario, fields) =>{
       if(err) {return console.log(err)};
 
-      console.log("datos de usuario " , usuario[0])
-      console.log("payload    ", payload)
-
+      console.log("datos de usuario " , usuario[0].idUsuario)
       if(rows.length !== 0){
           const idBluetooth = '30:ae:a4:99:49:aa';
           mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
