@@ -12,7 +12,7 @@ app.post('/',express.json(),(req, res)=>{
     console.log('informacion del usuario ', user)
 
     const { accessToken } = user;
-    const usuario = jwt.verify(accessToken, secret)
+    const usuario = jwt.verify(accessToken)
     console.log(usuario)
 
     const  { planta } = agent.parameters;
