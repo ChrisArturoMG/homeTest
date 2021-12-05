@@ -13,7 +13,8 @@ const df = dialogflow({
 })
 const app = express();
 // you can change the app port here
-app.set('port', (4444))
+app.listen(process.env.PORT, ()=> console.log('server por el puerto 3333'))
+
 
 app.use(bodyParser.json());
 
@@ -124,7 +125,6 @@ app.post('/',express.json(),(req, res)=>{
     
 })
 
-app.listen(process.env.PORT, ()=> console.log('server por el puerto 3333'))
 
 
 */
