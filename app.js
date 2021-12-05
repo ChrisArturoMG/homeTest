@@ -30,7 +30,12 @@ app.post('/',express.json(),(req, res)=>{
     const { accessToken } = user;
     const  { planta } = agent.parameters;
     const payload = verify(accessToken)
-    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ payload.name ], rows = (err, rows, fields) =>{     
+    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ payload.given_name ], rows = (err, rows, fields) =>{
+      
+      if(err){
+        console.log(err)
+      }
+
       if(rows.length!==0){
 
         console.log(' puedes usar el asistente')
