@@ -97,7 +97,7 @@ app.post('/',express.json(), async (req, res)=>{
             
             console.log(' tus nodos  ',  nodos)
 
-          mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ],  (err, rows, fields) =>{  
+          mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ '30:ae:a4:99:49:aa' ],  (err, rows, fields) =>{  
             console.log('haciendo consulta')
             console.log(rows)
             dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
