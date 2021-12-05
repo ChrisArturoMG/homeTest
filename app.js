@@ -24,50 +24,51 @@ app.post('/',express.json(), async (req, res)=>{
     const { accessToken } = user;
     const  { planta } = agent.parameters;
     const payload = await  verify(accessToken)
-    //mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ usuario.name ], rows = (err, rows, fields) =>{
-//      if(rows.length === 0){
-//        mysqlConnection.query('INSERT INTO usuario tokenGoogleHome =? );', [ accessToken ], rows = (err, rows, fields) =>{});
-//      }     
-
-console.log(payload)
-      //if(rows.length!==0){
-        const idBluetooth = '30:ae:a4:99:49:aa';
-        mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
-          console.log('haciendo consulta')
-          console.log(rows)
-          dialogo = `
-          Ire a reviar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
-          
-          console.log(dialogo)
-          
-          const  demo =  (agent)=>{
-            return agent.add( dialogo );
-          }
-          function customPayloadDemo(agent){
-            var payloadData = {
-              "richContent":[
-                [
-                  {
-                    "type" : "accordion",
-                    "title": "Accordion title",
-                    "subtitle": "Accordion subtitle",
-                    "image" : {
-                      "src": {
-                          "rawUrl": "https://example.com/images/logo.png"
-                        }
-                      },
-                      "text": "According text"
-                    }
-                  ]
-                ]
-              }
-              agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
+    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ payload.given_name ], rows = (err, rows, fields) =>{
+      if(rows.length === 0){
+        console.log('puedes pasar ')
+        console.log(payload)
+        //if(rows.length!==0){
+          const idBluetooth = '30:ae:a4:99:49:aa';
+          mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
+            console.log('haciendo consulta')
+            console.log(rows)
+            dialogo = `
+            Ire a reviar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
+            
+            console.log(dialogo)
+            
+            const  demo =  (agent)=>{
+              return agent.add( dialogo );
             }
-            var intentMap = new Map();
-            intentMap.set('demo', demo);
-            intentMap.set('customPayloadDemo', customPayloadDemo)
-            agent.handleRequest(intentMap)
-          })
+            function customPayloadDemo(agent){
+              var payloadData = {
+                "richContent":[
+                  [
+                    {
+                      "type" : "accordion",
+                      "title": "Accordion title",
+                      "subtitle": "Accordion subtitle",
+                      "image" : {
+                        "src": {
+                            "rawUrl": "https://example.com/images/logo.png"
+                          }
+                        },
+                        "text": "According text"
+                      }
+                    ]
+                  ]
+                }
+                agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
+              }
+              var intentMap = new Map();
+              intentMap.set('demo', demo);
+              intentMap.set('customPayloadDemo', customPayloadDemo)
+              agent.handleRequest(intentMap)
+            });
+        
+      }     
+    });
 //      } 
 //  });
       } catch (error) {
