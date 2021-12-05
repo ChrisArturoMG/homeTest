@@ -6,7 +6,7 @@ const { mysqlConnection }= require('./database')
 const {OAuth2Client} = require('google-auth-library');
 
 
-const cliente = new OAuth2Client('1074458211545-57sn8sif1cu4sbib3fu7m0f16ge862en.apps.googleusercontent.com' );
+const client = new OAuth2Client('1074458211545-57sn8sif1cu4sbib3fu7m0f16ge862en.apps.googleusercontent.com' );
 
 async function verify(token) {
   const ticket = await client.verifyIdToken({
