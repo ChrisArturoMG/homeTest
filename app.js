@@ -4,6 +4,11 @@ const dfff = require('dialogflow-fulfillment')
 
 const { mysqlConnection }= require('./database')
 
+app.get('/verficar', (req, res) =>{
+
+  console.log("/////////////////VERFICAR FUNCIONA/////////////////////////")
+})
+
 app.post('/',express.json(),(req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
