@@ -26,7 +26,7 @@ app.post('/',express.json(), async (req, res)=>{
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ], rows = (err, rows, fields) =>{
       
       if(err) {return console.log(err)};
-      if(rows.length === 0){
+      if(rows.length !== 0){
         console.log('puedes pasar ')
         console.log(rows)
         console.log(payload)
