@@ -30,11 +30,11 @@ app.post('/',express.json(),(req, res)=>{
     const { accessToken } = user;
     const  { planta } = agent.parameters;
     const payload = verify(accessToken)
-    //mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ usuario.name ], rows = (err, rows, fields) =>{
-//      if(rows.length === 0){
-//        mysqlConnection.query('INSERT INTO usuario tokenGoogleHome =? );', [ accessToken ], rows = (err, rows, fields) =>{});
-//      }     
-      //if(rows.length!==0){
+    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ payload.name ], rows = (err, rows, fields) =>{     
+      if(rows.length!==0){
+
+        console.log(' puedes usar el asistente')
+
         const idBluetooth = '30:ae:a4:99:49:aa';
         mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
           console.log('haciendo consulta')
@@ -74,8 +74,8 @@ app.post('/',express.json(),(req, res)=>{
             intentMap.set('customPayloadDemo', customPayloadDemo)
             agent.handleRequest(intentMap)
           })
-//      } 
-//  });
+      } 
+  });
       } catch (error) {
       console.log(error)
     }
