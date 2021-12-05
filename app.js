@@ -23,12 +23,12 @@ app.post('/',express.json(), async (req, res)=>{
     const { accessToken } = user;
     const  { planta } = agent.parameters;
     const payload = await  verify(accessToken)
-    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ], rows = (err, rows, fields) =>{
+    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ], rows = (err, usuario, fields) =>{
       if(err) {return console.log(err)};
       if(rows.length !== 0){
           const idBluetooth = '30:ae:a4:99:49:aa';
-          mysqlConnection.query('SELECT IdBluetooth FROM nodoCentral WHERE IdBluetooth = ?', [ rows.idUsuario ], rows = (err, rows, fields) =>{  
-          console.log(' tus nodos  ',  rows)
+          mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario.idUsuario ], rows = (err, nodos, fields) =>{  
+          console.log(' tus nodos  ',  nodos)
           
           mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
             console.log('haciendo consulta')
