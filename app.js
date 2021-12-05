@@ -25,8 +25,11 @@ app.post('/',express.json(), async (req, res)=>{
     const  { planta } = agent.parameters;
     const payload = await  verify(accessToken)
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ payload.given_name ], rows = (err, rows, fields) =>{
+      
+      if(err){return console.log(err)}
       if(rows.length === 0){
         console.log('puedes pasar ')
+        console.log(rows)
         console.log(payload)
         //if(rows.length!==0){
           const idBluetooth = '30:ae:a4:99:49:aa';
