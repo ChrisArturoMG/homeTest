@@ -23,10 +23,10 @@ app.post('/',express.json(), async (req, res)=>{
     const { accessToken } = user;
     const  { planta } = agent.parameters;
     const payload = await  verify(accessToken)
-    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ], rows = (err, usuario, fields) =>{
+    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ],  (err, usuario, fields) =>{
       if(err) {return console.log(err)};
 
-      console.log("datos de usuario " , usuario.idUsuario)
+      console.log("datos de usuario " , usuario.RowDataPacket.idUsuario)
       console.log("payload    ", payload)
 
       if(rows.length !== 0){
