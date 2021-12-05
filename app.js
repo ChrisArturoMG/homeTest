@@ -73,10 +73,10 @@ app.post('/',express.json(), async (req, res)=>{
               })
           } 
           
-  });
-      } catch (error) {
+    });
+  } catch (error) {
       console.log(error)
-    }
+  }
     
 })
 
