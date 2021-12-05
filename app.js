@@ -8,7 +8,7 @@ const {
 } = require('actions-on-google');
 const express = require('express');
 const df = dialogflow({
-    clientId: '########################################.apps.googleusercontent.com',
+    clientId: '597873273572-aogl07fq5do26b81v4fb0tk9cg31sqkd.apps.googleusercontent.com.apps.googleusercontent.com',
 
 })
 const app = express();
