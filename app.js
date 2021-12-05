@@ -1,19 +1,27 @@
 const express = require('express')
 const app = express();
 const dfff = require('dialogflow-fulfillment')
-const jwt = require('jsonwebtoken')
 const { mysqlConnection }= require('./database')
+
+app.get('/verficar', (req, res) =>{
+
+  console.log("/////////////////VERFICAR FUNCIONA/////////////////////////")
+  console.log("////////////////VERFICAR FUNCIONA/////////////////////////")
+})
+
 app.post('/',express.json(),(req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
+    const { user } = agent.request_.body.originalDetectIntentRequest.payload
+    console.log('informacion del usuario ', user)
+    console.log(agent)
     const  { planta } = agent.parameters;
   
       const idBluetooth = '30:ae:a4:99:49:aa';
       const datos = mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
         console.log('haciendo consulta')
-           dialogo = ` Hola 
-           Voy a revisar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
+           dialogo = `Voy a revisar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
            
            console.log(dialogo)
            
