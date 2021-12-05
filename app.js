@@ -88,9 +88,12 @@ app.post('/',express.json(), async (req, res)=>{
 
           mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
             
+
+            nodos 
+
             for (let i = 0; i < nodos.length; i++) {
               if(nodos[i].IdPlanta !== idPlanta){
-                nodos.slice(i, 1)
+                nodos.splice(i, 1)
                 console.log('se elimino algo que no es un limon')
               }
             }
