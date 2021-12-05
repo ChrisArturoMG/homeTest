@@ -92,7 +92,7 @@ app.post('/',express.json(), async (req, res)=>{
               if(nodos[i].IdPlanta !== idPlanta){
                 nodos.splice(i, 1)
                 console.log('se elimino algo que no es un limon')
-                i=0;
+                i=-1;
               }
             }
             
