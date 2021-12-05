@@ -76,9 +76,9 @@ app.post('/',express.json(), async (req, res)=>{
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
     const { accessToken } = user;
     const  { planta } = agent.parameters;
-    const payload = await  verify(accessToken)
+    const payload = await  verify(accessToken);
 
-    console.log('El id de la planta es ', obtenerIdPlanta(planta))
+    const idPlanta = obtenerIdPlanta(planta);
 
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ],  (err, usuario, fields) =>{
       if(err) {return console.log(err)};
@@ -87,9 +87,15 @@ app.post('/',express.json(), async (req, res)=>{
         console.log("datos de usuario " , usuario[0].idUsuario)
 
           mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
-          console.log(' tus nodos  ',  nodos)
-          
-
+            
+            for (let i = 0; i < nodos.length; i++) {
+              if(!nodos[i].IdPlanta === idPlanta){
+                nodos.slice(i)
+                console.log('se elimino algo que no es un limon')
+              }
+            }
+            
+            console.log(' tus nodos  ',  nodos)
 
           mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ],  (err, rows, fields) =>{  
             console.log('haciendo consulta')
