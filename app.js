@@ -30,22 +30,12 @@ app.post('/',express.json(), async (req, res)=>{
     const  { planta } = agent.parameters;
     const payload = await verify(accessToken)
 
-    console.log(payload)
-
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? ;', [ payload.given_name ],  (err, rows, fields) =>{
-      
-      if(err){
-        console.log(err)
-      }
-
-      try {
+      if(err){return console.log(err)}
           if(rows.length!==0){
-            console.log(' puedes usar el asistente')
     
             const idBluetooth = '30:ae:a4:99:49:aa';
             mysqlConnection.query('SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE idBluetooth = ? );', [ idBluetooth ], rows = (err, rows, fields) =>{  
-              console.log('haciendo consulta')
-    
               console.log(rows)
     
               dialogo = `${payload.name}
@@ -83,9 +73,6 @@ app.post('/',express.json(), async (req, res)=>{
               })
           } 
           
-        } catch (error) {
-          
-        }
   });
       } catch (error) {
       console.log(error)
