@@ -32,7 +32,7 @@ app.post('/',express.json(), async (req, res)=>{
 
     console.log(payload)
 
-    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ payload.given_name ],  (err, rows, fields) =>{
+    mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? ;', [ payload.given_name ],  (err, rows, fields) =>{
       
       if(err){
         console.log(err)
