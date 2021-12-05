@@ -20,11 +20,10 @@ app.post('/',express.json(),(req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
-    const { user } = agent.request_.body.originalDetectIntentRequest.payload
-    const { accessToken } = user;
+    //const { user } = agent.request_.body.originalDetectIntentRequest.payload
+    //const { accessToken } = user;
     const  { planta } = agent.parameters;
-    const usuario = verify(accessToken)
-    const payload = verify(accessToken)
+    //const payload = verify(accessToken)
     //mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ usuario.name ], rows = (err, rows, fields) =>{
 //      if(rows.length === 0){
 //        mysqlConnection.query('INSERT INTO usuario tokenGoogleHome =? );', [ accessToken ], rows = (err, rows, fields) =>{});
