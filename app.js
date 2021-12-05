@@ -13,7 +13,6 @@ async function verify(token) {
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
   const payload = ticket.getPayload();
-  console.log(payload)
   return payload
 }
 app.post('/',express.json(), async (req, res)=>{
