@@ -90,7 +90,7 @@ app.post('/',express.json(), async (req, res)=>{
             
             for (let i = 0; i < nodos.length; i++) {
               if(!nodos[i].IdPlanta === idPlanta){
-                nodos.slice(i)
+                nodos.slice(i, 1)
                 console.log('se elimino algo que no es un limon')
               }
             }
