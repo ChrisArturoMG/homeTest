@@ -3,16 +3,32 @@ const app = express();
 const dfff = require('dialogflow-fulfillment')
 const jwt = require('jsonwebtoken')
 const { mysqlConnection }= require('./database')
+const {OAuth2Client} = require('google-auth-library');
+const {OAuth2Client} = require('google-auth-library');
+
+async function verify(token) {
+  const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: '1074458211545-57sn8sif1cu4sbib3fu7m0f16ge862en.apps.googleusercontent.com',  // Specify the CLIENT_ID of the app that accesses the backend
+      // Or, if multiple clients access the backend:
+      //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+  });
+  const payload = ticket.getPayload();
+  console.log(payload)
+}
+
+
 
 app.post('/',express.json(),(req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
-    
     const { accessToken } = user;
     const usuario = jwt.verify(accessToken, 'secret')
     console.log(usuario)
+
+    verify(accessToken)
 
     const  { planta } = agent.parameters;
   
