@@ -9,10 +9,9 @@ app.post('/',express.json(),(req, res)=>{
   
   try {
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
-    console.log('informacion del usuario ', user)
-
+    
     const { accessToken } = user;
-    const usuario = jwt.verify(accessToken)
+    const usuario = jwt.verify(accessToken, 'secret')
     console.log(usuario)
 
     const  { planta } = agent.parameters;
