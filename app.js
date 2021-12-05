@@ -25,7 +25,12 @@ app.post('/',express.json(),(req, res)=>{
     const { user } = agent.request_.body.originalDetectIntentRequest.payload
     const { accessToken } = user;
 
-    verify(accessToken)
+    try {
+      
+      verify(accessToken)
+    } catch (error) {
+      
+    }
 
     const  { planta } = agent.parameters;
   
