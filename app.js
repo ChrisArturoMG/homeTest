@@ -16,7 +16,6 @@ async function verify(token) {
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
   const payload = ticket.getPayload();
-  console.log(payload)
   return payload
 }
 
@@ -30,6 +29,9 @@ app.post('/',express.json(),(req, res)=>{
     const { accessToken } = user;
     const  { planta } = agent.parameters;
     const payload = verify(accessToken)
+
+    console.log(payload)
+
     mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ payload.given_name ],  (err, rows, fields) =>{
       
       if(err){
