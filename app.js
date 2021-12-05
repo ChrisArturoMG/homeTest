@@ -23,13 +23,13 @@ async function verify(token) {
 
 
 app.post('/',express.json(),(req, res)=>{
-  const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
-    const { user } = agent.request_.body.originalDetectIntentRequest.payload
+    const agent = new dfff.WebhookClient({ request : req, response : res });
+    //const { user } = agent.request_.body.originalDetectIntentRequest.payload
     const { accessToken } = user;
     const  { planta } = agent.parameters;
-    const payload = verify(accessToken)
+    //const payload = verify(accessToken)
     //mysqlConnection.query('SELECT * FROM  usuario WHERE username = ? );', [ usuario.name ], rows = (err, rows, fields) =>{
 //      if(rows.length === 0){
 //        mysqlConnection.query('INSERT INTO usuario tokenGoogleHome =? );', [ accessToken ], rows = (err, rows, fields) =>{});
@@ -41,7 +41,7 @@ app.post('/',express.json(),(req, res)=>{
 
           console.log(rows)
 
-          dialogo = `${payload.name}
+          dialogo = `
           Ire a reviar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
           
           console.log(dialogo)
