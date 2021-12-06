@@ -110,9 +110,18 @@ app.post('/',express.json(), async (req, res)=>{
 
           mysqlConnection.query((query), (err, rows, fields) =>{  
             console.log('haciendo consulta')
-            console.log(rows)
-            dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tu planta ${planta}, tiene de temperatura ${rows[0].temperatura}, vamos a ver que mas tenemos por aqui, veo que la humedad es de ${rows[0].humedad}%, vaya! interesante! la luz es de ${rows[0].luz} y el ph es de ${rows[0].ph}`;
+            dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}`; 
             
+            for (let i = 0; i < rows.length; i++) {
+              dialogo = dialogo +  ` ${planta}
+              tiene de temperatura ${rows[i].temperatura}, 
+              revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
+              vaya! interesante! la luz es de ${rows[0].luz} 
+              y el ph es de ${rows[0].ph}`;
+            }
+            
+            dialogo = dialogo +  `. Ha sido un placer ayudarte`;
+
             console.log(dialogo)
             
             const  demo =  (agent)=>{
@@ -146,8 +155,6 @@ app.post('/',express.json(), async (req, res)=>{
           });
       }     
     });
-//      } 
-//  });
       } catch (error) {
       console.log(error)
     }
