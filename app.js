@@ -100,9 +100,9 @@ app.post('/',express.json(), async (req, res)=>{
 
             for (let i = 0; i < nodos.length; i++) {
               if(i !== nodos.length-1){
-                query = query + ' idBluetooth = ' + nodos[i].IdBluetooth + ' OR ';
+                query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' OR `;
               }else{
-                query = query + ' idBluetooth = ' + nodos[i].IdBluetooth + ' ; '; 
+                query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' ); `; 
               }
             }
 
