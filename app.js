@@ -99,7 +99,7 @@ app.post('/',express.json(), async (req, res)=>{
             query = 'SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE';
 
             for (let i = 0; i < nodos.length; i++) {
-              if(i !== nodos.length){
+              if(i !== nodos.length-1){
                 query = query + ' idBluetooth = ' + nodos[i].IdBluetooth + ' OR ';
               }else{
                 query = query + ' idBluetooth = ' + nodos[i].IdBluetooth + ' ; '; 
