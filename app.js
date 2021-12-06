@@ -84,14 +84,12 @@ app.post('/',express.json(), async (req, res)=>{
       if(err) {return console.log(err)};
 
       if(usuario.length !== 0){
-        console.log("datos de usuario " , usuario[0].idUsuario)
 
           mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
 
             for (let i = 0; i < nodos.length; i++) {
               if(nodos[i].IdPlanta !== idPlanta){
                 nodos.splice(i, 1)
-                console.log('se elimino algo que no es un limon')
                 i=-1;
               }
             }
@@ -100,9 +98,9 @@ app.post('/',express.json(), async (req, res)=>{
 
             for (let i = 0; i < nodos.length; i++) {
               if(i !== nodos.length){
-                query = query + ' idBluetooth = ' + nodos.IdBluetooth + ' OR ';
+                query = query + ' idBluetooth = ' + nodos[i].IdBluetooth + ' OR ';
               }else{
-                query = query + ' idBluetooth = ' + nodos.IdBluetooth + ' ; '; 
+                query = query + ' idBluetooth = ' + nodos[i].IdBluetooth + ' ; '; 
               }
             }
 
