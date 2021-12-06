@@ -90,6 +90,7 @@ app.post('/',express.json(), async (req, res)=>{
             for (let i = 0; i < nodos.length; i++) {
               if(nodos[i].IdPlanta !== idPlanta){
                 nodos.splice(i, 1)
+                console.log('se elimino')
                 i=-1;
               }
             }
