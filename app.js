@@ -113,8 +113,8 @@ app.post('/',express.json(), async (req, res)=>{
             dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}`; 
             
             for (let i = 0; i < rows.length; i++) {
-              dialogo = dialogo +  ` ${planta}
-              tiene de temperatura ${rows[i].temperatura}, 
+              dialogo = dialogo +  ` 
+              ${planta} ${ i } tiene de temperatura ${rows[i].temperatura}, 
               revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
               vaya! interesante! la luz es de ${rows[0].luz} 
               y el ph es de ${rows[0].ph}`;
