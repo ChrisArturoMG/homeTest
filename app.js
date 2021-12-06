@@ -62,7 +62,8 @@ const obtenerIdPlanta = ( planta )=>{
     
     case 'Zarzamora':
         return 21;
-    
+    case 'Girasol':
+      return 4;
     default:
       break;
   }
