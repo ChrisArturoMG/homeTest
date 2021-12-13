@@ -94,7 +94,7 @@ app.post('/',express.json(), async (req, res)=>{
   
         if(usuario.length !== 0){
   
-            mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
+            mysqlConnection.query('SELECT * FROM nodoCentral INNER JOIN planta ON IdPlanta = idPlant  WHERE  IdUsuario = ? ', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
 
               for (let i = 0; i < nodos.length; i++) {
                 if(nodos[i].IdPlanta !== idPlanta){
