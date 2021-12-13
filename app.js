@@ -190,7 +190,7 @@ app.post('/',express.json(), async (req, res)=>{
                 }
               }
               
-              query = 'SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE';
+              query = 'SELECT * FROM lecturaNodo INNER JOIN planta ON IdPlanta = idPlant WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE';
   
               for (let i = 0; i < nodos.length; i++) {
                 if(i !== nodos.length-1){
