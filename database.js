@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const mysqlConnection = mysql.createConnection({
-    host: 'ttplantas.mysql.database.azure.com',
-    user: 'node',
-    password: 'adam@22',
-    database: 'tt_db'
+    host: 'mysql-chrismg.alwaysdata.net',
+    user: 'chrismg_chris',
+    password: 'Kcr@12345',
+    database: 'chrismg_tt_db'
 
     //host: 'mysql-chrismg.alwaysdata.net',
     //user: 'chrismg_chris',
