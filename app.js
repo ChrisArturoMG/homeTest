@@ -77,6 +77,10 @@ app.post('/',express.json(), async (req, res)=>{
     const  { planta } = agent.parameters;
     const  { lugar } = agent.parameters;
 
+
+    console.log(' planta ', planta)
+    console.log(' lugar ', lugar)
+
     if(planta !== undefined){
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
