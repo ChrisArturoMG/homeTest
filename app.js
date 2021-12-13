@@ -196,7 +196,7 @@ app.post('/',express.json(), async (req, res)=>{
                 if(i !== nodos.length-1){
                   query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' OR `;
                 }else{
-                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' INNER JOIN planta ON IdPlanta = idPlant); `; 
+                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' ); `; 
                 }
               }
   
