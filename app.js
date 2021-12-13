@@ -132,7 +132,7 @@ app.post('/',express.json(), async (req, res)=>{
                 for (let i = 0; i < rows.length; i++) {
                   dialogo = dialogo +  ` 
                   ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura } °C, 
-                  revisemos mas, veo que la humedad es de ${parseInt(rows[i].humedad).toFixed(1)}% y  
+                  revisemos mas, veo que la humedad es de ${rows[i].humedad}% y  
                   la luz es de ${rows[0].luz} lux`;
                 }
                 
