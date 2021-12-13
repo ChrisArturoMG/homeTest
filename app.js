@@ -74,7 +74,7 @@ app.post('/',express.json(), async (req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
-    if(planta !== ''){
+    if(planta === undefined){
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
       const  { planta } = agent.parameters;
