@@ -210,6 +210,10 @@ app.post('/',express.json(), async (req, res)=>{
                 console.log('haciendo consulta')
                 dialogo = `Hola ${usuario[0].username}, Voy a revisar, en tu ${ lugar } tienes ${rows.length} por revisar.`; 
                 
+
+
+                console.log('Buena ',  nodos)
+
                 for (let i = 0; i < rows.length; i++) {
                   dialogo = dialogo +  ` 
                   Tu ${ nodos.alias } ${ i+1 }, tiene de temperatura ${rows[i].temperatura}, 
