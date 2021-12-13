@@ -120,7 +120,7 @@ app.post('/',express.json(), async (req, res)=>{
 
               if(rows.length !== 0 ){
                 console.log('haciendo consulta')
-                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}.`; 
+                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${rows.length}.`; 
                 
                 for (let i = 0; i < rows.length; i++) {
                   dialogo = dialogo +  ` 
@@ -184,9 +184,9 @@ app.post('/',express.json(), async (req, res)=>{
             mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ? AND nodeName = ?', [ usuario[0].idUsuario, lugar ],  (err, nodos, fields) =>{  
   
               for (let i = 0; i < nodos.length; i++) {
-                if(nodos[i].IdPlanta !== idPlanta){
+                if(nodos[i].nodeName !== lugar){
                   nodos.splice(i, 1)
-                  console.log('se elimino algo que no es ', planta)
+                  console.log('se elimino algo que no es ', lugar)
                   i=-1;
                 }
               }
