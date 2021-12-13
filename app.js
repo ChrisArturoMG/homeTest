@@ -74,10 +74,11 @@ app.post('/',express.json(), async (req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
   try {
+    const  { planta } = agent.parameters;
+    const  { lugar } = agent.parameters;
     if(planta === undefined){
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
-      const  { planta } = agent.parameters;
       const payload = await  verify(accessToken);
   
       const idPlanta = obtenerIdPlanta(planta);
@@ -160,7 +161,6 @@ app.post('/',express.json(), async (req, res)=>{
 
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
-      const  { lugar } = agent.parameters;
       const payload = await  verify(accessToken);
   
       const idPlanta = obtenerIdPlanta(planta);
