@@ -95,7 +95,7 @@ app.post('/',express.json(), async (req, res)=>{
         if(usuario.length !== 0){
   
             mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
-  
+
               for (let i = 0; i < nodos.length; i++) {
                 if(nodos[i].IdPlanta !== idPlanta){
                   nodos.splice(i, 1)
@@ -117,20 +117,24 @@ app.post('/',express.json(), async (req, res)=>{
               console.log('este es el QUERY ' ,   query)
   
             mysqlConnection.query((query), (err, rows, fields) =>{  
-              console.log('haciendo consulta')
-              dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}.`; 
-              
-              for (let i = 0; i < rows.length; i++) {
-                dialogo = dialogo +  ` 
-                El ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura}, 
-                revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
-                la luz es de ${rows[0].luz} 
-                y el ph es de ${rows[0].ph}.`;
+
+              if(rows.length !== 0 ){
+                console.log('haciendo consulta')
+                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}.`; 
+                
+                for (let i = 0; i < rows.length; i++) {
+                  dialogo = dialogo +  ` 
+                  El ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura}, 
+                  revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
+                  la luz es de ${rows[0].luz} 
+                  y el ph es de ${rows[0].ph}.`;
+                }
+                
+                dialogo = dialogo +  `. Ha sido un placer ayudarte`;
+    
+                console.log(dialogo)
               }
-              
-              dialogo = dialogo +  `. Ha sido un placer ayudarte`;
-  
-              console.log(dialogo)
+
               
               const  demo =  (agent)=>{
                 return agent.add( dialogo );
@@ -199,17 +203,22 @@ app.post('/',express.json(), async (req, res)=>{
               console.log('este es el QUERY ' ,   query)
   
             mysqlConnection.query((query), (err, rows, fields) =>{  
-              console.log('haciendo consulta')
-              dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! en tu ${ lugar }, revisare ${nodos.length}.`; 
-              
-              for (let i = 0; i < rows.length; i++) {
-                dialogo = dialogo +  ` 
-                tu ${planta}, tiene de temperatura ${rows[i].temperatura}, veo que la humedad es de ${rows[i].humedad}% y la luz es de ${rows[0].luz}`;
+              if(rows.length !== 0 ){
+                console.log('haciendo consulta')
+                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}.`; 
+                
+                for (let i = 0; i < rows.length; i++) {
+                  dialogo = dialogo +  ` 
+                  El ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura}, 
+                  revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
+                  la luz es de ${rows[0].luz} 
+                  y el ph es de ${rows[0].ph}.`;
+                }
+                
+                dialogo = dialogo +  `. Ha sido un placer ayudarte`;
+    
+                console.log(dialogo)
               }
-              
-              dialogo = dialogo +  `. Ha sido un placer ayudarte`;
-  
-              console.log(dialogo)
               
               const  demo =  (agent)=>{
                 return agent.add( dialogo );
