@@ -81,7 +81,7 @@ app.post('/',express.json(), async (req, res)=>{
     console.log(' planta ', planta)
     console.log(' lugar ', lugar)
 
-    if(planta !== undefined){
+    if(planta !== ''){
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
       const payload = await  verify(accessToken);
