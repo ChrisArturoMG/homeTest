@@ -180,7 +180,7 @@ app.post('/',express.json(), async (req, res)=>{
   
         if(usuario.length !== 0){
   
-            mysqlConnection.query('SELECT * FROM nodoCentral WHERE IdUsuario = ? AND nodeName = ? INNER JOIN planta ON nodoCentral.IdPlanta = planta.idPlant', [ usuario[0].idUsuario, lugar ],  (err, nodos, fields) =>{  
+            mysqlConnection.query('SELECT * FROM nodoCentral INNER JOIN planta ON IdPlanta = idPlant  WHERE  IdUsuario = ? AND nodeName = ?', [ usuario[0].idUsuario, lugar ],  (err, nodos, fields) =>{  
   
               for (let i = 0; i < nodos.length; i++) {
                 if(nodos[i].nodeName !== lugar){
