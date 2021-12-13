@@ -190,6 +190,8 @@ app.post('/',express.json(), async (req, res)=>{
                 }
               }
               
+
+
               query = 'SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE';
   
               for (let i = 0; i < nodos.length; i++) {
@@ -203,10 +205,10 @@ app.post('/',express.json(), async (req, res)=>{
               console.log('este es el QUERY ' ,   query)
   
             mysqlConnection.query((query), (err, rows, fields) =>{
+              if(rows !== undefined ){
               
               console.log('mira esto ', rows)
 
-              if(rows.length !== 0 ){
                 console.log('haciendo consulta')
                 dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}.`; 
                 
@@ -221,6 +223,8 @@ app.post('/',express.json(), async (req, res)=>{
                 dialogo = dialogo +  `. Ha sido un placer ayudarte`;
     
                 console.log(dialogo)
+              }else{
+                dialogo = dialogo +  `No tienes nodos en ese lugar`;
               }
               
               const  demo =  (agent)=>{
