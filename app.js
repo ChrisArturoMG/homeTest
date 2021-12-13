@@ -82,6 +82,7 @@ app.post('/',express.json(), async (req, res)=>{
     console.log(' lugar ', lugar)
 
     if(planta !== ''){
+      console.log('planta...')
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
       const payload = await  verify(accessToken);
@@ -163,7 +164,7 @@ app.post('/',express.json(), async (req, res)=>{
         }     
       });
     }else{
-
+      console.log('lugar...')
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
       const payload = await  verify(accessToken);
