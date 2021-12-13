@@ -168,6 +168,7 @@ app.post('/',express.json(), async (req, res)=>{
         }     
       });
     }else{
+      let dialogo;
       console.log('lugar...')
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
@@ -224,7 +225,7 @@ app.post('/',express.json(), async (req, res)=>{
     
                 console.log(dialogo)
               }else{
-                dialogo = dialogo +  `No tienes nodos en ese lugar`;
+                dialogo = `No tienes nodos en ese lugar`;
               }
               
               const  demo =  (agent)=>{
