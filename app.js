@@ -125,9 +125,8 @@ app.post('/',express.json(), async (req, res)=>{
                 for (let i = 0; i < rows.length; i++) {
                   dialogo = dialogo +  ` 
                   El ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura}, 
-                  revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
-                  la luz es de ${rows[0].luz} 
-                  y el ph es de ${rows[0].ph}.`;
+                  revisemos mas, veo que la humedad es de ${rows[i].humedad}% y  
+                  la luz es de ${rows[0].luz}`;
                 }
                 
                 dialogo = dialogo +  `. Ha sido un placer ayudarte`;
