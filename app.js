@@ -120,7 +120,7 @@ app.post('/',express.json(), async (req, res)=>{
 
               if(rows.length !== 0 ){
                 console.log('haciendo consulta')
-                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${rows.length}.`; 
+                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${rows.length} para revisar.`; 
                 
                 for (let i = 0; i < rows.length; i++) {
                   dialogo = dialogo +  ` 
@@ -191,15 +191,13 @@ app.post('/',express.json(), async (req, res)=>{
                 }
               }
               
-
-
               query = 'SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE';
   
               for (let i = 0; i < nodos.length; i++) {
                 if(i !== nodos.length-1){
                   query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' OR `;
                 }else{
-                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' ); `; 
+                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' INNER JOIN planta ON IdPlanta = idPlant); `; 
                 }
               }
   
@@ -211,11 +209,11 @@ app.post('/',express.json(), async (req, res)=>{
               console.log('mira esto ', rows)
 
                 console.log('haciendo consulta')
-                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}.`; 
+                dialogo = `Hola ${usuario[0].username}, Voy a revisar, en tu ${ lugar } tienes ${rows.length} por revisar.`; 
                 
                 for (let i = 0; i < rows.length; i++) {
                   dialogo = dialogo +  ` 
-                  El ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura}, 
+                  Tu ${ planta } ${ i+1 }, tiene de temperatura ${rows[i].temperatura}, 
                   revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
                   la luz es de ${rows[0].luz} 
                   y el ph es de ${rows[0].ph}.`;
