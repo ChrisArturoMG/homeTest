@@ -202,7 +202,10 @@ app.post('/',express.json(), async (req, res)=>{
   
               console.log('este es el QUERY ' ,   query)
   
-            mysqlConnection.query((query), (err, rows, fields) =>{  
+            mysqlConnection.query((query), (err, rows, fields) =>{
+              
+              console.log('mira esto ', rows)
+
               if(rows.length !== 0 ){
                 console.log('haciendo consulta')
                 dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${nodos.length}.`; 
