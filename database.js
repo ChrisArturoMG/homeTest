@@ -1,15 +1,15 @@
 const mysql = require('mysql');
 
 const mysqlConnection = mysql.createConnection({
-    //host: 'localhost',
-    //user: 'root',
-    //password: '123456789',
-    //database: 'project'
+    host: 'http://ttplantas.eastus.cloudapp.azure.com:3306/',
+    user: 'node',
+    password: 'adam@22',
+    database: 'tt_db'
 
-    host: 'mysql-chrismg.alwaysdata.net',
-    user: 'chrismg_chris',
-    password: 'Kcr@12345',
-    database: 'chrismg_project'
+    //host: 'mysql-chrismg.alwaysdata.net',
+    //user: 'chrismg_chris',
+    //password: 'Kcr@12345',
+    //database: 'chrismg_project'
 
 });
 
