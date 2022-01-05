@@ -82,7 +82,9 @@ app.post('/',express.json(), async (req, res)=>{
   
   
   try {
-    const  { lugar } = agent.parameters;
+    console.log(agent.parameters)
+
+    const  lugar = agent.parameters.lugar;
     const  { planta } = agent.parameters;
     console.log('VALORES DE PETICION ', planta,'  ', lugar)
 
