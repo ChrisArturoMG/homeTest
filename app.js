@@ -127,7 +127,7 @@ app.post('/',express.json(), async (req, res)=>{
 
               if(rows.length !== 0 ){
                 console.log('haciendo consulta')
-                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes estos ${rows.length} para revisar:`; 
+                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${rows.length} para revisar:`; 
                 
                 for (let i = 0; i < rows.length; i++) {
                   dialogo = dialogo +  `\n${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura } °C, revisemos mas, veo que la humedad es de ${parseInt(rows[i].humedad).toFixed(1)}% y  la luz es de ${rows[0].luz} lux`;
