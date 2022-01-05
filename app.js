@@ -223,7 +223,7 @@ app.post('/',express.json(), async (req, res)=>{
                 console.log('Buena ',  nodos)
 
                 for (let i = 0; i < rows.length; i++) {
-                  dialogo = dialogo +  `\nTu ${ nodos[i].alias }, tiene de temperatura ${rows[i].temperatura}, revisemos mas, veo que la humedad es de ${rows[i].humedad}%, y la luz es de ${rows[0].luz}`;
+                  dialogo = dialogo +  `\nTu ${ nodos[i].alias }, tiene de temperatura ${rows[i].temperatura}°C, revisemos mas, veo que la humedad es de ${rows[i].humedad}%, y la luz es de ${rows[0].luz} lux`;
                 }
                 
                 dialogo = dialogo +  `. \nHa sido un placer ayudarte`;
