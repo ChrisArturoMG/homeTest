@@ -172,7 +172,7 @@ app.post('/',express.json(), async (req, res)=>{
       });
     }else{
       let dialogo;
-      console.log('lugar...')
+      console.log('lugar ', lugar)
       const { user } = agent.request_.body.originalDetectIntentRequest.payload
       const { accessToken } = user;
       const payload = await  verify(accessToken);
