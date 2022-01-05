@@ -130,13 +130,10 @@ app.post('/',express.json(), async (req, res)=>{
                 dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${rows.length} para revisar.`; 
                 
                 for (let i = 0; i < rows.length; i++) {
-                  dialogo = dialogo +  ` 
-                  ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura } °C, 
-                  revisemos mas, veo que la humedad es de ${parseInt(rows[i].humedad).toFixed(1)}% y  
-                  la luz es de ${rows[0].luz} lux`;
+                  dialogo = dialogo +  ` ${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura } °C, revisemos mas, veo que la humedad es de ${parseInt(rows[i].humedad).toFixed(1)}% y  la luz es de ${rows[0].luz} lux`;
                 }
                 
-                dialogo = dialogo +  `. Ha sido un placer ayudarte`;
+                dialogo = dialogo +  `. \nHa sido un placer ayudarte`;
     
                 console.log(dialogo)
               }
@@ -222,13 +219,10 @@ app.post('/',express.json(), async (req, res)=>{
                 console.log('Buena ',  nodos)
 
                 for (let i = 0; i < rows.length; i++) {
-                  dialogo = dialogo +  ` 
-                  Tu ${ nodos[i].alias }, tiene de temperatura ${rows[i].temperatura}, 
-                  revisemos mas, veo que la humedad es de ${rows[i].humedad}%, 
-                  y la luz es de ${rows[0].luz}`;
+                  dialogo = dialogo +  `Tu ${ nodos[i].alias }, tiene de temperatura ${rows[i].temperatura}, revisemos mas, veo que la humedad es de ${rows[i].humedad}%, y la luz es de ${rows[0].luz}`;
                 }
                 
-                dialogo = dialogo +  `. Ha sido un placer ayudarte`;
+                dialogo = dialogo +  `. \nHa sido un placer ayudarte`;
     
                 console.log(dialogo)
               }else{
