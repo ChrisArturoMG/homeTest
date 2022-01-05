@@ -84,13 +84,13 @@ app.post('/',express.json(), async (req, res)=>{
   try {
     console.log(agent.parameters)
 
-    const  lugar = agent.parameters.lugar;
+    const  lugar = agent.parameters.pos;
     const  { planta } = agent.parameters;
-    console.log('VALORES DE PETICION ', planta,'  ', lugar)
+    console.log('VALORES DE PETICION ', planta,'  ', pos)
 
 
     console.log(' planta ', planta)
-    console.log(' lugar ', lugar)
+    console.log(' lugar ', pos)
 
     if(planta !== ''){
       console.log('planta...')
