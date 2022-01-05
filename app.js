@@ -90,7 +90,7 @@ app.post('/',express.json(), async (req, res)=>{
 
 
     console.log(' planta ', planta)
-    console.log(' lugar ', pos)
+    console.log(' lugar ', lugar)
 
     if(planta !== ''){
       console.log('planta...')
