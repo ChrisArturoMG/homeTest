@@ -86,7 +86,7 @@ app.post('/',express.json(), async (req, res)=>{
 
     const  lugar = agent.parameters.pos;
     const  { planta } = agent.parameters;
-    console.log('VALORES DE PETICION ', planta,'  ', pos)
+    console.log('VALORES DE PETICION ', planta,'  ', lugar)
 
 
     console.log(' planta ', planta)
