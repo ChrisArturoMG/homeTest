@@ -80,9 +80,9 @@ const obtenerIdPlanta = ( planta )=>{
 app.post('/',express.json(), async (req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
-  const  { lugar } = agent.parameters;
   
   try {
+    const  { lugar } = agent.parameters;
     const  { planta } = agent.parameters;
     console.log('VALORES DE PETICION ', planta,'  ', lugar)
 
