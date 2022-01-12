@@ -94,7 +94,7 @@ app.post('/',express.json(), async (req, res)=>{
 
     if(planta !== ''){
       const  demo =  (agent)=>{
-
+        dialogo = ''
         dialogo = 'Hola Sebastian, voy a revisar! listo! tienes 1 para revisar: Camote 1, tiene de temperatura 24 °C, revisemos mas, veo que la humedad es de 35% y la luz es de 7790 lux. Ha sido un placer ayudarte.'
 
         return agent.add( dialogo );
@@ -124,6 +124,7 @@ app.post('/',express.json(), async (req, res)=>{
         intentMap.set('customPayloadDemo', customPayloadDemo)
         agent.handleRequest(intentMap)
     }else{
+      dialogo = ''
       dialogo = 'Hola Sebastian, voy a revisar, en tu Jardin tienes 1 por revisar. Tu Lechuga, tiene de temperatura 23°C, revisemos mas, veo que la humedad es de 65% y la luz es de 6456 lux. Ha sido un placer ayudarte.'
 
       const  demo =  (agent)=>{
