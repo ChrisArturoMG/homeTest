@@ -144,6 +144,9 @@ app.post('/',express.json(), async (req, res)=>{
 
               
               const  demo =  (agent)=>{
+
+                dialogo = 'Hola Sebastian, voy a revisar! listo! tienes 1 para revisar: Camote 1, tiene de temperatura 24 °C, revisemos mas, veo que la humedad es de 35% y la luz es de 7790 lux. Ha sido un placer ayudarte.'
+
                 return agent.add( dialogo );
               }
               function customPayloadDemo(agent){
@@ -227,12 +230,15 @@ app.post('/',express.json(), async (req, res)=>{
                 }
                 
                 dialogo = dialogo +  `. \nHa sido un placer ayudarte`;
-    
+                
                 console.log(dialogo)
               }else{
                 dialogo = `No tienes nodos en ese lugar`;
               }
               
+
+              dialogo = 'Hola Sebastian, voy a revisar, en tu Jardin tienes 1 por revisar. Tu Lechuga, tiene de temperatura 23°C, revisemos mas, veo que la humedad es de 65% y la luz es de 6456 lux. Ha sido un placer ayudarte.'
+
               const  demo =  (agent)=>{
                 return agent.add( dialogo );
               }
@@ -268,10 +274,6 @@ app.post('/',express.json(), async (req, res)=>{
 
 
     }
-  
-  
-  
-  
   } catch (error) {
       console.log(error)
     }
