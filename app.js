@@ -93,185 +93,66 @@ app.post('/',express.json(), async (req, res)=>{
     console.log(' lugar ', lugar)
 
     if(planta !== ''){
-      console.log('planta...')
-      const { user } = agent.request_.body.originalDetectIntentRequest.payload
-      const { accessToken } = user;
-      const payload = await  verify(accessToken);
-  
-      const idPlanta = obtenerIdPlanta(planta);
-  
-      mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ],  (err, usuario, fields) =>{
-        if(err) {return console.log(err)};
-  
-        if(usuario.length !== 0){
-  
-            mysqlConnection.query('SELECT * FROM nodoCentral INNER JOIN planta ON IdPlanta = idPlant  WHERE  IdUsuario = ?', [ usuario[0].idUsuario ],  (err, nodos, fields) =>{  
+      const  demo =  (agent)=>{
 
-              for (let i = 0; i < nodos.length; i++) {
-                if(nodos[i].IdPlanta !== idPlanta){
-                  nodos.splice(i, 1)
-                  console.log('se elimino algo que no es ', planta)
-                  i=-1;
+        dialogo = 'Hola Sebastian, voy a revisar! listo! tienes 1 para revisar: Camote 1, tiene de temperatura 24 °C, revisemos mas, veo que la humedad es de 35% y la luz es de 7790 lux. Ha sido un placer ayudarte.'
+
+        return agent.add( dialogo );
+      }
+      function customPayloadDemo(agent){
+        var payloadData = {
+          "richContent":[
+            [
+              {
+                "type" : "accordion",
+                "title": "Accordion title",
+                "subtitle": "Accordion subtitle",
+                "image" : {
+                  "src": {
+                      "rawUrl": "https://example.com/images/logo.png"
+                    }
+                  },
+                  "text": "According text"
                 }
-              }
-              
-              query = 'SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE';
-  
-              for (let i = 0; i < nodos.length; i++) {
-                if(i !== nodos.length-1){
-                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' OR `;
-                }else{
-                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' ); `; 
-                }
-              }
-  
-              console.log('este es el QUERY ' ,   query)
-  
-            mysqlConnection.query((query), (err, rows, fields) =>{  
-
-              if(rows.length !== 0 ){
-                console.log('haciendo consulta')
-                dialogo = `Hola ${usuario[0].username}, Voy a revisar! listo! tienes ${rows.length} para revisar:`; 
-                
-                for (let i = 0; i < rows.length; i++) {
-                  dialogo = dialogo +  `\n${planta} ${ i+1 }, tiene de temperatura ${rows[i].temperatura } °C, revisemos mas, veo que la humedad es de ${parseInt(rows[i].humedad).toFixed(0)}% y  la luz es de ${rows[0].luz} lux`;
-                }
-                
-                dialogo = dialogo +  `. \nHa sido un placer ayudarte`;
-    
-                console.log(dialogo)
-              }
-
-              
-              const  demo =  (agent)=>{
-
-                dialogo = 'Hola Sebastian, voy a revisar! listo! tienes 1 para revisar: Camote 1, tiene de temperatura 24 °C, revisemos mas, veo que la humedad es de 35% y la luz es de 7790 lux. Ha sido un placer ayudarte.'
-
-                return agent.add( dialogo );
-              }
-              function customPayloadDemo(agent){
-                var payloadData = {
-                  "richContent":[
-                    [
-                      {
-                        "type" : "accordion",
-                        "title": "Accordion title",
-                        "subtitle": "Accordion subtitle",
-                        "image" : {
-                          "src": {
-                              "rawUrl": "https://example.com/images/logo.png"
-                            }
-                          },
-                          "text": "According text"
-                        }
-                      ]
-                    ]
-                  }
-                  agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
-                }
-                var intentMap = new Map();
-                intentMap.set('demo', demo);
-                intentMap.set('customPayloadDemo', customPayloadDemo)
-                agent.handleRequest(intentMap)
-              });
-            });
-        }     
-      });
+              ]
+            ]
+          }
+          agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
+        }
+        var intentMap = new Map();
+        intentMap.set('demo', demo);
+        intentMap.set('customPayloadDemo', customPayloadDemo)
+        agent.handleRequest(intentMap)
     }else{
-      let dialogo;
-      console.log('lugar ', lugar)
-      const { user } = agent.request_.body.originalDetectIntentRequest.payload
-      const { accessToken } = user;
-      const payload = await  verify(accessToken);
-  
-      const idPlanta = obtenerIdPlanta(planta);
-  
-      mysqlConnection.query('SELECT * FROM  usuario WHERE username = ?', [ payload.given_name ],  (err, usuario, fields) =>{
-        if(err) {return console.log(err)};
-  
-        if(usuario.length !== 0){
-  
-            mysqlConnection.query('SELECT * FROM nodoCentral INNER JOIN planta ON IdPlanta = idPlant  WHERE  IdUsuario = ? AND nodeName = ?', [ usuario[0].idUsuario, lugar ],  (err, nodos, fields) =>{  
-  
-              for (let i = 0; i < nodos.length; i++) {
-                if(nodos[i].nodeName !== lugar){
-                  nodos.splice(i, 1)
-                  console.log('se elimino algo que no es ', lugar)
-                  i=-1;
+      dialogo = 'Hola Sebastian, voy a revisar, en tu Jardin tienes 1 por revisar. Tu Lechuga, tiene de temperatura 23°C, revisemos mas, veo que la humedad es de 65% y la luz es de 6456 lux. Ha sido un placer ayudarte.'
+
+      const  demo =  (agent)=>{
+        return agent.add( dialogo );
+      }
+      function customPayloadDemo(agent){
+        var payloadData = {
+          "richContent":[
+            [
+              {
+                "type" : "accordion",
+                "title": "Accordion title",
+                "subtitle": "Accordion subtitle",
+                "image" : {
+                  "src": {
+                      "rawUrl": "https://example.com/images/logo.png"
+                    }
+                  },
+                  "text": "According text"
                 }
-              }
-              
-              query = 'SELECT * FROM lecturaNodo WHERE registerDate = (SELECT MAX(registerDate) FROM lecturaNodo WHERE';
-  
-              for (let i = 0; i < nodos.length; i++) {
-                if(i !== nodos.length-1){
-                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' OR `;
-                }else{
-                  query = query + ` idBluetooth = '` + nodos[i].IdBluetooth + `' ); `; 
-                }
-              }
-  
-              console.log('este es el QUERY ' ,   query)
-  
-            mysqlConnection.query((query), (err, rows, fields) =>{
-              if(rows !== undefined ){
-              
-              console.log('mira esto ', rows)
-
-                console.log('haciendo consulta')
-                dialogo = `Hola ${usuario[0].username}, Voy a revisar, en tu ${ lugar } tienes ${rows.length} por revisar.`; 
-                
-
-
-                console.log('Buena ',  nodos)
-
-                for (let i = 0; i < rows.length; i++) {
-                  dialogo = dialogo +  `\nTu ${ nodos[i].alias }, tiene de temperatura ${rows[i].temperatura}°C, revisemos mas, veo que la humedad es de ${(rows[i].humedad).toFixed(0)}%, y la luz es de ${rows[0].luz} lux`;
-                }
-                
-                dialogo = dialogo +  `. \nHa sido un placer ayudarte`;
-                
-                console.log(dialogo)
-              }else{
-                dialogo = `No tienes nodos en ese lugar`;
-              }
-              
-
-              dialogo = 'Hola Sebastian, voy a revisar, en tu Jardin tienes 1 por revisar. Tu Lechuga, tiene de temperatura 23°C, revisemos mas, veo que la humedad es de 65% y la luz es de 6456 lux. Ha sido un placer ayudarte.'
-
-              const  demo =  (agent)=>{
-                return agent.add( dialogo );
-              }
-              function customPayloadDemo(agent){
-                var payloadData = {
-                  "richContent":[
-                    [
-                      {
-                        "type" : "accordion",
-                        "title": "Accordion title",
-                        "subtitle": "Accordion subtitle",
-                        "image" : {
-                          "src": {
-                              "rawUrl": "https://example.com/images/logo.png"
-                            }
-                          },
-                          "text": "According text"
-                        }
-                      ]
-                    ]
-                  }
-                  agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
-                }
-                var intentMap = new Map();
-                intentMap.set('demo', demo);
-                intentMap.set('customPayloadDemo', customPayloadDemo)
-                agent.handleRequest(intentMap)
-              });
-            });
-        }     
-      });
-
-
+              ]
+            ]
+          }
+          agent.add( new dfff.Payload(platform.UNSPECIFIED, payloadData, { sendAsMessage: true, rawPayload: true}))
+        }
+        var intentMap = new Map();
+        intentMap.set('demo', demo);
+        intentMap.set('customPayloadDemo', customPayloadDemo)
+        agent.handleRequest(intentMap)
 
     }
   } catch (error) {
