@@ -80,7 +80,7 @@ const obtenerIdPlanta = ( planta )=>{
 app.post('/',express.json(), async (req, res)=>{
   const agent = new dfff.WebhookClient({ request : req, response : res });
   
-  
+  let dialogo='';
   try {
     console.log(agent.parameters)
 
@@ -99,7 +99,6 @@ app.post('/',express.json(), async (req, res)=>{
 
         return agent.add( dialogo );
       }
-      dialogo = ''
       function customPayloadDemo(agent){
         var payloadData = {
           "richContent":[
@@ -125,13 +124,12 @@ app.post('/',express.json(), async (req, res)=>{
         intentMap.set('customPayloadDemo', customPayloadDemo)
         agent.handleRequest(intentMap)
     }else{
-      dialogo = ''
-      dialogo = 'Hola Sebastian, voy a revisar, en tu Jardin tienes 1 por revisar. Tu Lechuga, tiene de temperatura 23°C, revisemos mas, veo que la humedad es de 65% y la luz es de 6456 lux. Ha sido un placer ayudarte.'
-
+      
       const  demo =  (agent)=>{
+        dialogo = ''
+        dialogo = 'Hola Sebastian, voy a revisar, en tu Jardin tienes 1 por revisar. Tu Lechuga, tiene de temperatura 23°C, revisemos mas, veo que la humedad es de 65% y la luz es de 6456 lux. Ha sido un placer ayudarte.'
         return agent.add( dialogo );
       }
-      dialogo = ''
       function customPayloadDemo(agent){
         var payloadData = {
           "richContent":[
