@@ -99,6 +99,7 @@ app.post('/',express.json(), async (req, res)=>{
 
         return agent.add( dialogo );
       }
+      dialogo = ''
       function customPayloadDemo(agent){
         var payloadData = {
           "richContent":[
@@ -130,6 +131,7 @@ app.post('/',express.json(), async (req, res)=>{
       const  demo =  (agent)=>{
         return agent.add( dialogo );
       }
+      dialogo = ''
       function customPayloadDemo(agent){
         var payloadData = {
           "richContent":[
